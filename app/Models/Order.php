@@ -21,7 +21,7 @@ class Order extends Model
      */
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'foreign_key', 'other_key');
+        return $this->belongsTo(Customer::class);
     }
 
     /**

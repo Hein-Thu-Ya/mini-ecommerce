@@ -36,6 +36,8 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-bolt';
 
+    protected static ?int $navigationSort = 1;
+
     protected static ?string $navigationGroup = 'Shop';
 
     public static function form(Form $form): Form
@@ -50,7 +52,7 @@ class ProductResource extends Resource
                             ->required()
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
-                            ->unique(Product::class, 'slug', ignoreRecord: true),
+                            ->unique(Product::class, 'name', ignoreRecord: true),
                         TextInput::make('slug')
                             ->disabled()
                             ->dehydrated()
