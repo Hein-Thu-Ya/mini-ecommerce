@@ -33,6 +33,16 @@ class OrderResource extends Resource
 
     protected static ?string $navigationGroup = 'Shop';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status', '=', 'pending')->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::where('status', '=', 'pending')->count() > 10 ? 'danger' : 'primary';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
